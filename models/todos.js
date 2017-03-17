@@ -15,6 +15,11 @@ module.exports = (server) => {
         assigned: {
             type: Schema.Types.ObjectId,
             ref: 'User'
+        },
+
+        project: {
+            type: Schema.Types.ObjectId,
+            ref: 'Project'
         }
     });
 
