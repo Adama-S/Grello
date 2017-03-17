@@ -11,19 +11,28 @@
     "acl": {
         "roles": [
             {
-                "name": "admin",
+                "name": "owner",
                 "level": 1
             },
             {
-                "name": "lambda",
+                "name": "admin",
                 "level": 2
+            },
+            {
+                "name": "member",
+                "level": 3
             }
         ],
         "actions": {
-            "todos.create": 2,
             "todos.remove": 2,
             "todos.update": 2,
-            "todos.assign": 1
+            "todos.assign": 2,
+            "members.create": 2,
+            "members.remove": 2,
+            "members.update": 2,
+            "projects.update": 2,
+            "projects.remove": 2
+
         }
     }
 }

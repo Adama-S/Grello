@@ -26,13 +26,7 @@ module.exports = (server) => {
 
         function createUser() {
             user.password = sha1(user.password);
-            Role.findOne({name: 'lambda'})
-                .then(setRole);
-
-            function setRole(role) {
-                user.role = role._id.toString();
-                return user.save()
-            }
+            return user.save()
         }
     }
 
