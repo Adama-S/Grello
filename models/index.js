@@ -11,7 +11,7 @@ module.exports = server => {
         Token: require('./token')(server),
         Role: require('./roles')(server),
         Team: require('./teams')(server),
-        Project: require('./project')(server)
-        UserTeam: require('./UserTeam')
+        Project: require('./project')(server),
+        UserTeam: require('./userTeams')(server)
     }
 };

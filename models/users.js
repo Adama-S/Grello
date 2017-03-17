@@ -29,7 +29,7 @@ module.exports = (server) => {
             type: Schema.Types.ObjectId,
             ref: 'Role',
             select: false
-        }
+        },
 
         userTeam: {
           type: Schema.Types.ObjectId,

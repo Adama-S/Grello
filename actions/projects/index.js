@@ -1,6 +1,7 @@
 module.exports = (server) => {
     const Project = server.models.Project;
     const User = server.models.User;
+    const Team = server.models.Team;
 
     return {
         create,
@@ -19,6 +20,9 @@ module.exports = (server) => {
             .then(createProject)
             .then(setCreator)
             .then(persist)
+            .then(createTeam)
+            .then(setTeam)
+            .then(persist)
             .then(res.commit)
             .catch(res.error);
 
@@ -31,6 +35,50 @@ module.exports = (server) => {
         function setCreator(project) {
             project.userCreator = req.user.id;
             return project;
+        }
+
+        function createTeam() {
+            return User.findById(req.user.id)
+                .then(server.utils.ensureOne)
+                .catch(server.utils.reject(403, 'invalid.user'))
+                .then(createTeam)
+                .then(setAdmin)
+                .then(persist)
+                .then(res.commit)
+                .catch(res.error);
+
+            function createTeam(data) {
+                user = data;
+                return new Team(req.body);
+            }
+
+            function setAdmin(team){
+                team.userOwner = req.user.id;
+                return team;
+            }
+
+            function persist(team) {
+                return team.save()
+                    .then(returnTeam);
+
+                function returnTeam() {
+                    return team;
+                }
+            }
+        }
+
+        function setTeam(project) {
+            return Team
+                .findOne({_id: team._id})
+                .then((data) => {
+                    team = data;
+                    console.log("test" + team._id);
+
+                    project.team = team._id;
+                    console.log(project.team);
+                    return project;
+                }
+                );
         }
 
         function persist(project) {
