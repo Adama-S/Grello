@@ -23,13 +23,13 @@ module.exports = (server) => {
       .catch(server.utils.reject(403, 'invalid.user'))
       .then(createTeam)
       .then(setAdmin)
-      .then(updateProject)
       .then(persist)
       .then(res.commit)
       .catch(res.error);
 
     function createTeam(data) {
       user = data;
+      project = data;
       return new Team(req.body);
     }
 
@@ -38,21 +38,27 @@ module.exports = (server) => {
       return team;
     }
 
-    function updateProject(team){
-
-      Project.findByIdAndUpdate(team.project, team)
-          .then(server.utils.ensureOne)
-          .catch(server.utils.reject(404, 'project.not.found'))
-          .then(server.utils.empty)
-          .then(res.commit)
-          .catch(res.error);
-
-      return team;
-    }
 
     function persist(team) {
       return team.save()
+        .then(addToProject)
         .then(returnTeam);
+
+        function addToProject(team){
+          console.log(team);
+          return Project
+            .findOne({_id: team.project})
+            .then((data) => {
+              project = data;
+
+              project.team = team._id;
+
+              console.log("test 1 " + project.data)
+              console.log("test " + project.id);
+              return project.save();
+          })
+
+        }
 
         function returnTeam() {
           return team;
