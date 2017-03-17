@@ -6,12 +6,14 @@ module.exports = (server) => {
       type: String,
       required: true
     },
-    project: [
-      {
+    project: {
         type: Schema.Types.ObjectId,
         ref: 'Project'
-      }
-    ],
+    },
+    userOwner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     users: [
       {
         type: Schema.Types.ObjectId,
