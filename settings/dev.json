@@ -27,11 +27,14 @@
             "todos.remove": 2,
             "todos.update": 2,
             "todos.assign": 2,
-            "members.create": 2,
-            "members.remove": 2,
-            "members.update": 2,
+            "teams.create": 2,
+            "teams.remove": 2,
+            "teams.update": 2,
+            "teams.assignRole": 1,
             "projects.update": 2,
             "projects.remove": 2
+
+
 
         }
     }
