@@ -28,10 +28,6 @@ module.exports = (server) => {
         server.middlewares.ensureRights('projects.remove'),
         server.actions.projects.remove);
 
-    // router.put('/:id/assign/:assignedId',
-    //     server.middlewares.ensureAuthenticated,
-    //     server.middlewares.ensureRights('todos.assign'),
-    //     server.actions.todos.assign);
 
     return router;
 };

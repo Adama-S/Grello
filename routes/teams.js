@@ -29,10 +29,10 @@ module.exports = (server) => {
         server.middlewares.ensureRights('teams.remove'),
         server.actions.teams.remove);
 
-    router.put('/:id/assign/:assignedId',
-        server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureRights('teams.assignRole'),
-        server.actions.teams.assign);
+    // router.put('/:id/assign/:assignedId',
+    //     server.middlewares.ensureAuthenticated,
+    //     server.middlewares.ensureRights('teams.assignRole'),
+    //     server.actions.teams.assign);
 
     return router;
 };

@@ -1,19 +1,19 @@
 module.exports = (server) => {
     const User = server.models.User;
     const UserTeam = server.models.UserTeam;
-    const Project = server.models.Project;
+    const Team = server.models.Team;
 
 
     return (req, res, next) => {
         let assignedUser = null;
-        let project = null;
+        let team = null;
 
         return findAssigned() // 1. ensuring the new assigned exist
             .then(server.utils.ensureOne)
             .catch(server.utils.reject(404, 'assigned.not.found'))
-            .then(findProject) // 2. capturing the todo as global variable
+            .then(findUserTeam) // 2. capturing the todo as global variable
             .then(server.utils.ensureOne)
-            .catch(server.utils.reject(404, 'project.not.found'))
+            .catch(server.utils.reject(404, 'team.not.found'))
             .then(getAssigned) // 3. capturing the originalAssigned as global variable.
             .then(updateProject)
             .then(updateAssigneds)
