@@ -10,6 +10,7 @@ module.exports = server => {
         Todo: require('./todos')(server),
         Token: require('./token')(server),
         Role: require('./roles')(server),
-        Team: require('./teams')(server)
+        Team: require('./teams')(server),
+        Project: require('./project')(server)
     }
 };
