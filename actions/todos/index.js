@@ -19,6 +19,7 @@ module.exports = (server) => {
             .catch(server.utils.reject(403, 'invalid.user'))
             .then(createTodo)
             .then(setCreatorAndAssign)
+            .then(setProject)
             .then(persist)
             .then(res.commit)
             .catch(res.error);
@@ -31,6 +32,11 @@ module.exports = (server) => {
         function setCreatorAndAssign(todo) {
             todo.creator = req.user.id;
             todo.assigned = req.user.id;
+            return todo;
+        }
+
+        function setProject(todo) {
+            todo.project = req.body.projectId;
             return todo;
         }
 
