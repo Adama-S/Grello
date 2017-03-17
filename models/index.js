@@ -9,8 +9,9 @@ module.exports = server => {
         User: require('./users')(server),
         Todo: require('./todos')(server),
         Token: require('./token')(server),
-        Project: require('./project')(server),
         Role: require('./roles')(server),
+        Team: require('./teams')(server),
+        Project: require('./project')(server)
         UserTeam: require('./UserTeam')
     }
 };

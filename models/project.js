@@ -6,10 +6,10 @@ module.exports = (server) => {
     const ProjectSchema = new Schema({
         title: String,
 
-        /*team: {
+        team: {
             type: Schema.Types.ObjectId,
             ref: 'Team'
-        },*/
+        },
 
         userCreator: {
             type: Schema.Types.ObjectId,

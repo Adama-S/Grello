@@ -3,6 +3,7 @@ module.exports = (server) => {
         users: require('./users')(server),
         todos: require('./todos')(server),
         projects: require('./projects')(server),
-        auth: require('./auth')(server)
+        auth: require('./auth')(server),
+        teams: require('./teams')(server)
     }
 }
